@@ -17,7 +17,7 @@
         }
     }
     &__icon-button {
-        @extend %icon-button;
+        @extend %simple-button;
         @include size(default, 24px, 24px);
         &:nth-child(2) {
             grid-area: search;
@@ -83,5 +83,42 @@
         &__link {
             @extend %nav-link;
         }
+    }
+}
+
+.main-content {
+    @include background-image("@img/main_content_bg.png", no-repeat, cover, center);
+    @include respond-to(desktop) {
+        @include background-image("@img/main_content_bg_desktop.png");
+    }
+    &__container {
+        @include spacing(padding, y, 100px);
+        @include respond-to(desktop) {
+            @include spacing(padding, y, px);
+        }
+    }
+    &__title {
+        @extend %main-content-title;
+        line-height: 1;
+    }
+    &__text {
+        display: none;
+        @extend %main-content-text;
+        @include respond-to(desktop) {
+            display: block;
+            @include spacing(margin, (top, bottom), 16px, 24px);
+        }
+    }
+    &__button {
+        @extend %simple-button;
+        @extend %main-content-button;
+        @include flex(on, $align-items: center, $gap: 8px);
+        @include spacing(margin, top, 20px);
+        @include respond-to(desktop) {
+            @include spacing(margin, top, 0px);
+        }
+    }
+    &__arrow {
+        padding-top: 5px;
     }
 }

@@ -2,6 +2,7 @@
 @use "sass:list";
 @use "sass:math";
 @use "sass:meta";
+
 // Переменные, мапы и списки
 
 $colors-map: (
@@ -35,9 +36,15 @@ $font-weights-map: (
     @return map.get($font-weights-map, $weight-name);
 }
 
-$text-list: ();
+$text-list: (
+    main-content-title "Cormorant" bold normal white 48px 60px,
+    main-content-text "Open Sans" regular normal white 16px 16px
+);
 
-$link-list: (nav-link "Open Sans" font-weight(regular) normal white color("green-toxic") color(green-active) 16px 16px,);
+$link-list: (
+    nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,
+    main-content-button "Open Sans" bold normal white color("green-toxic") color(green-hover) 16px 16px
+);
 
 // Миксины
 
@@ -286,40 +293,37 @@ $breakpoints: (
     object-position: $position;
 }
 
-// Сложные шаблоны
+@mixin background-image($image-path, $repeat: null, $size: null, $position: null) {
+    background-image: url($image-path);
+    background-repeat: $repeat;
+    background-size: $size;
+    background-position: $position;
+}
 
-// @each $item in $text-list {
-//     $name: nth($item, 1);
-//     $font-weight: nth($item, 2);
-//     $font-style: nth($item, 3);
-//     $color: nth($item, 4);
-//     $font-size: nth($item, 5);
-//     $tablet-font-size: nth($item, 6);
-//     $big-tablet-font-size: nth($item, 7);
-//     $desktop-font-size: nth($item, 8);
+// Комплексные шаблоны
 
-//     %#{$name} {
-//         font-weight: font-weight($font-weight);
-//         font-style: $font-style;
-//         font-size: $font-size;
-//         color: $color;
-//         @if $font-size != $tablet-font-size {
-//             @include respond-to(tablet) {
-//                 font-size: $tablet-font-size;
-//             }
-//         }
-//         @if $tablet-font-size != $big-tablet-font-size {
-//             @include respond-to(big-tablet) {
-//                 font-size: $big-tablet-font-size;
-//             }
-//         }
-//         @if $big-tablet-font-size != $desktop-font-size {
-//             @include respond-to(desktop) {
-//                 font-size: $desktop-font-size;
-//             }
-//         }
-//     }
-// }
+@each $item in $text-list {
+    $name: list.nth($item, 1);
+    $font-family: list.nth($item, 2);
+    $font-weight: list.nth($item, 3);
+    $font-style: list.nth($item, 4);
+    $color: list.nth($item, 5);
+    $font-size: list.nth($item, 6);
+    $desktop-font-size: list.nth($item, 7);
+
+    %#{$name} {
+        font-family: $font-family;
+        font-weight: font-weight($font-weight);
+        font-style: $font-style;
+        font-size: $font-size;
+        color: $color;
+        @if $font-size != $desktop-font-size {
+            @include respond-to(desktop) {
+                font-size: $desktop-font-size;
+            }
+        }
+    }
+}
 
 @each $item in $link-list {
     $name: list.nth($item, 1);
@@ -397,7 +401,7 @@ $breakpoints: (
     position: relative;
 }
 
-%icon-button {
+%simple-button {
     @extend %simple-transition;
     color: color("green-toxic");
     &:hover {

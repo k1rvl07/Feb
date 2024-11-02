@@ -1,10 +1,14 @@
 // Компоненты
 import NavItem from '@components/NavItem';
-import Container from '@components//Container';
 import HeaderIconButton from '@components/HeaderIconButton';
+import SectionTemplate from '@components/SectionTemplate';
+
+// Дата
+import { navItems } from '@data';
 
 // Картинки
 import logo from '@svg/logo.svg';
+
 
 export default function Header() {
     const buttonIcons = [
@@ -18,24 +22,19 @@ export default function Header() {
             <path d="M15 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     ];
-    const navItems = ['Каталог', 'Галерея', 'О лаборатории', 'Контакты'];
     return (
-        <header className='header'>
-            <Container>
-                <div className='header__container'>
-                    <img className="header__logo" src={logo} alt="" />
-                    {buttonIcons.map((icon, index) => (
-                        <HeaderIconButton key={index}>{icon}</HeaderIconButton>
+        <SectionTemplate tagName='header' className='header'>
+            <img className="header__logo" src={logo} alt="" />
+            {buttonIcons.map((icon, index) => (
+                <HeaderIconButton key={index}>{icon}</HeaderIconButton>
+            ))}
+            <nav className='nav'>
+                <ul className="nav__list">
+                    {navItems.map((item, index) => (
+                        <NavItem key={index}>{item}</NavItem>
                     ))}
-                    <nav className='nav'>
-                        <ul className="nav__list">
-                            {navItems.map((item, index) => (
-                                <NavItem key={index}>{item}</NavItem>
-                            ))}
-                        </ul>
-                    </nav>
-                </div>
-            </Container>
-        </header >
+                </ul>
+            </nav>
+        </SectionTemplate>
     );
 }

@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@components/*": [
+                "react/components/*"
+            ],
+            "@sections/*": [
+                "react/sections/*"
+            ],
+            "@pages/*": [
+                "react/pages/*"
+            ],
+            "@img/*": [
+                "assets/img/*"
+            ],
+            "@svg/*": [
+                "assets/svg/*"
+            ],
+            "@style_scss/*": [
+                "style_scss/*"
+            ],
+            "@data/*": [
+                "data/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ]
+}

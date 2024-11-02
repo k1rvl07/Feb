@@ -4,21 +4,9 @@ import path from 'path';
 
 export default defineConfig({
   base: '',
-  plugins: [react(),
-  {
-    name: 'filter-error-output',
-    configureServer(server) {
-      server.middlewares.use((req, res, next) => {
-        const originalError = console.error;
-        console.error = (...args) => {
-          const filteredArgs = args.filter(arg => !arg.includes('File:'));
-          originalError(...filteredArgs);
-        };
-        next();
-      });
-    },
-  },
-  ],
+  plugins: [react()],
+  logLevel: 'warn',
+  clearScreen: false,
   resolve: {
     alias: {
       '@components': path.resolve(__dirname, 'src/react/components'),
@@ -27,6 +15,7 @@ export default defineConfig({
       '@sections': path.resolve(__dirname, 'src/react/sections'),
       '@pages': path.resolve(__dirname, 'src/react/pages'),
       '@style_scss': path.resolve(__dirname, 'src/style_scss'),
+      '@data': path.resolve(__dirname, 'src/scripts/data.js'),
     }
   },
   css: {
