@@ -1,3 +1,5 @@
+@use "./configuration.scss" as *;
+
 .container {
     @extend %container;
 }

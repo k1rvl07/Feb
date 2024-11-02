@@ -5,13 +5,13 @@
 // Переменные, мапы и списки
 
 $colors-map: (
-    "grey": #899D9D,
-    "black": #0B1919,
-    "dark-blue": #1D2F30,
+    "grey": #899d9d,
+    "black": #0b1919,
+    "dark-blue": #1d2f30,
     "green": #506829,
-    "green-toxic": #BAE249,
-    "green-hover": #91AC46,
-    "green-active": #688B05,
+    "green-toxic": #bae249,
+    "green-hover": #91ac46,
+    "green-active": #688b05
 );
 
 @function color($color-name) {
@@ -37,7 +37,7 @@ $font-weights-map: (
 
 $text-list: ();
 
-$link-list: ();
+$link-list: (nav-link "Open Sans" font-weight(regular) normal white color("green-toxic") color(green-active) 16px 16px,);
 
 // Миксины
 
@@ -321,89 +321,89 @@ $breakpoints: (
 //     }
 // }
 
-// @each $item in $link-list {
-//     $name: nth($item, 1);
-//     $font-weight: nth($item, 2);
-//     $font-style: nth($item, 3);
-//     $color: nth($item, 4);
-//     $hover-color: nth($item, 5);
-//     $active-color: nth($item, 6);
-//     $font-size: nth($item, 7);
-//     $tablet-font-size: nth($item, 8);
-//     $big-tablet-font-size: nth($item, 9);
-//     $desktop-font-size: nth($item, 10);
+@each $item in $link-list {
+    $name: list.nth($item, 1);
+    $font-family: list.nth($item, 2);
+    $font-weight: list.nth($item, 3);
+    $font-style: list.nth($item, 4);
+    $color: list.nth($item, 5);
+    $hover-color: list.nth($item, 6);
+    $active-color: list.nth($item, 7);
+    $font-size: list.nth($item, 8);
+    $desktop-font-size: list.nth($item, 9);
 
-//     %#{$name} {
-//         @extend %simple-transition;
-//         font-weight: font-weight($font-weight);
-//         font-style: $font-style;
-//         color: $color;
-//         font-size: $font-size;
-//         &:hover {
-//             color: $hover-color;
-//         }
-//         &:active {
-//             color: $active-color;
-//         }
-//         @if $font-size != $tablet-font-size {
-//             @include respond-to(tablet) {
-//                 font-size: $tablet-font-size;
-//             }
-//         }
-//         @if $tablet-font-size != $big-tablet-font-size {
-//             @include respond-to(big-tablet) {
-//                 font-size: $big-tablet-font-size;
-//             }
-//         }
-//         @if $big-tablet-font-size != $desktop-font-size {
-//             @include respond-to(desktop) {
-//                 font-size: $desktop-font-size;
-//             }
-//         }
-//     }
-// }
+    %#{$name} {
+        @extend %simple-transition;
+        font-family: $font-family;
+        font-weight: font-weight($font-weight);
+        font-style: $font-style;
+        color: $color;
+        font-size: $font-size;
+        &:hover {
+            color: $hover-color;
+        }
+        &:active {
+            color: $active-color;
+        }
+        @if $font-size != $desktop-font-size {
+            @include respond-to(desktop) {
+                font-size: $desktop-font-size;
+            }
+        }
+    }
+}
 
 // Простые шаблоны
 
 %container {
-  width: 256px;
-  margin: 0 auto;
-  @include respond-to(desktop) {
-    width: 1110px;
-  }
+    width: 256px;
+    margin: 0 auto;
+    @include respond-to(desktop) {
+        width: 1110px;
+    }
 }
 
 %simple-transition {
-  transition: 0.3s;
-  &:hover {
     transition: 0.3s;
-  }
-  &:active {
-    transition: 0.05s;
-  }
+    &:hover {
+        transition: 0.3s;
+    }
+    &:active {
+        transition: 0.05s;
+    }
 }
 
 %simple-scale {
-  &:active {
-    transform: scale(0.9);
-  }
+    &:active {
+        transform: scale(0.9);
+    }
 }
 
 %slider {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  @include respond-to("desktop") {
-    overflow-x: hidden;
-  }
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    @include respond-to("desktop") {
+        overflow-x: hidden;
+    }
 }
 
 %slides {
-  transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 %slide {
-  scroll-snap-align: start;
-  position: relative;
+    scroll-snap-align: start;
+    position: relative;
 }
 
+%icon-button {
+    @extend %simple-transition;
+    color: color("green-toxic");
+    &:hover {
+        color: color("green-hover");
+    }
+    &:active {
+        color: color("green-active");
+    }
+}

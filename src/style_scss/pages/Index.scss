@@ -1,0 +1,87 @@
+@use "../configuration.scss" as *;
+
+.header {
+    background-color: color("dark-blue");
+    @include spacing(padding, y, 20px);
+    &__container {
+        @include grid-setup(on, repeat(2, auto), repeat(3, auto), "logo search login" "nav nav nav");
+        @include respond-to(desktop) {
+            @include grid-setup(on, auto, repeat(4, auto), "logo nav search login");
+        }
+    }
+    &__logo {
+        grid-area: logo;
+        @include spacing(margin, right, 111px);
+        @include respond-to(desktop) {
+            @include spacing(margin, right, 125px);
+        }
+    }
+    &__icon-button {
+        @extend %icon-button;
+        @include size(default, 24px, 24px);
+        &:nth-child(2) {
+            grid-area: search;
+            @include spacing(margin, right, 32px);
+            @include respond-to(desktop) {
+                @include spacing(margin, right, 64px);
+            }
+        }
+        &:nth-child(3) {
+            grid-area: login;
+        }
+    }
+    .nav {
+        grid-area: nav;
+        @include size(default, 256px, fit-content);
+        @include spacing(padding, top, 15px);
+        @include respond-to(desktop) {
+            @include size(default, 512px, fit-content);
+            @include spacing((padding, margin), (top, right), 0px, null, null, 296px);
+        }
+        &__list {
+            @include grid-setup(
+                on,
+                repeat(2, auto),
+                repeat(2, auto),
+                "catalog gallery" "about contacts",
+                $row-gap: 6px
+            );
+            @include respond-to(desktop) {
+                @include grid-setup(
+                    on,
+                    auto,
+                    repeat(4, auto),
+                    "catalog gallery about contacts",
+                    $row-gap: 0px,
+                    $column-gap: 64px
+                );
+            }
+        }
+        &__item {
+            @include size(default, fit-content);
+            &:nth-child(1) {
+                grid-area: catalog;
+            }
+            &:nth-child(2) {
+                grid-area: gallery;
+                @include grid-item-alignment(end);
+                @include respond-to(desktop) {
+                    @include grid-item-alignment(start);
+                }
+            }
+            &:nth-child(3) {
+                grid-area: about;
+            }
+            &:nth-child(4) {
+                grid-area: contacts;
+                @include grid-item-alignment(end);
+                @include respond-to(desktop) {
+                    @include grid-item-alignment(start);
+                }
+            }
+        }
+        &__link {
+            @extend %nav-link;
+        }
+    }
+}

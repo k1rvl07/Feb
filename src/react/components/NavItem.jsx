@@ -1,7 +1,7 @@
 export default function NavItem({ children }) {
     return (
-        <li>
-            <a href="">{children}</a>
+        <li className="nav__item">
+            <a className="nav__link" href="">{children}</a>
         </li>
     );
 }
