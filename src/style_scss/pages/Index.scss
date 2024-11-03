@@ -156,6 +156,9 @@
         &__indicators {
             @include flex(on, $justify: center, $gap: 20px);
             @include spacing(margin, top, 15px);
+            @include respond-to(desktop) {
+                display: none;
+            }
         }
         &__indicator {
             @include size(default, 10px, 10px);
