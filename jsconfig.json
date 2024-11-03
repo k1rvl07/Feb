@@ -20,8 +20,8 @@
             "@style_scss/*": [
                 "style_scss/*"
             ],
-            "@data/*": [
-                "data/*"
+            "@scripts/*": [
+                "scripts/*"
             ]
         }
     },

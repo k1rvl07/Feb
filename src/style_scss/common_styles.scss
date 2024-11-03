@@ -1,5 +1,40 @@
 @use "configuration.scss" as *;
 
+body {
+    background-color: color("dark-blue");
+}
+
 .container {
     @extend %container;
+}
+
+.slider {
+    &__window {
+        @extend %slider-window;
+    }
+    &__slides {
+        @extend %slides;
+    }
+    &__slide {
+        @extend %slide;
+    }
+}
+
+.button {
+    &-simple {
+        @include button(simple);
+        &-arrow {
+            @include button("simple", "arrow");
+        }
+    }
+    &-transparent {
+        @include button("transparent");
+        &-text {
+            @include button("transparent", "text");
+        }
+    }
+}
+
+.heading-second {
+    @extend %heading-second;
 }

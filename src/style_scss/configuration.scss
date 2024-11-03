@@ -37,14 +37,14 @@ $font-weights-map: (
 }
 
 $text-list: (
-    main-content-title "Cormorant" bold normal white 48px 60px,
-    main-content-text "Open Sans" regular normal white 16px 16px
+    main-content-heading "Cormorant" bold normal white 48px 60px,
+    main-content-text "Open Sans" regular normal white 16px 16px,
+    card-heading "Cormorant" bold normal white 24px 24px,
+    card-description "Open Sans" regular normal color("grey") 16px 16px,
+    heading-second "Cormorant" bold italic white 48px 48px,
 );
 
-$link-list: (
-    nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,
-    main-content-button "Open Sans" bold normal white color("green-toxic") color(green-hover) 16px 16px
-);
+$link-list: (nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,);
 
 // Миксины
 
@@ -300,6 +300,51 @@ $breakpoints: (
     background-position: $position;
 }
 
+@mixin button-text($type) {
+    font-style: normal;
+    font-size: 16px;
+    font-family: "Open Sans";
+    @if $type == "text" {
+        font-weight: font-weight(regular);
+    } @else if $type == "arrow" {
+        font-weight: font-weight(bold);
+    }
+}
+
+@mixin button($type: null, $font: null) {
+    @extend %simple-transition;
+    @if $font == "text" {
+        @include button-text("text");
+    } @else if $font == "arrow" {
+        @include button-text("arrow");
+    }
+    @if $type == "simple" {
+        color: color("green-toxic");
+
+        &:hover {
+            color: color("green-hover");
+        }
+
+        &:active {
+            color: color("green-active");
+        }
+    } @else if $type == "transparent" {
+        color: color("green-toxic");
+        background-color: transparent;
+        @include border(all, 1px, solid, color("green-toxic"));
+
+        &:hover {
+            color: color("black");
+            background-color: color("green-toxic");
+        }
+
+        &:active {
+            border-color: color("green-active");
+            background-color: color("green-active");
+        }
+    }
+}
+
 // Комплексные шаблоны
 
 @each $item in $text-list {
@@ -383,7 +428,7 @@ $breakpoints: (
     }
 }
 
-%slider {
+%slider-window {
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -401,13 +446,3 @@ $breakpoints: (
     position: relative;
 }
 
-%simple-button {
-    @extend %simple-transition;
-    color: color("green-toxic");
-    &:hover {
-        color: color("green-hover");
-    }
-    &:active {
-        color: color("green-active");
-    }
-}

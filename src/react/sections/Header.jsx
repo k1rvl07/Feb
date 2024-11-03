@@ -1,10 +1,10 @@
 // Компоненты
 import NavItem from '@components/NavItem';
-import HeaderIconButton from '@components/HeaderIconButton';
+import Button from '@components/Button';
 import SectionTemplate from '@components/SectionTemplate';
 
 // Дата
-import { navItems } from '@data';
+import { navItems } from '@scripts/data';
 
 // Картинки
 import logo from '@svg/logo.svg';
@@ -26,7 +26,7 @@ export default function Header() {
         <SectionTemplate tagName='header' className='header'>
             <img className="header__logo" src={logo} alt="" />
             {buttonIcons.map((icon, index) => (
-                <HeaderIconButton key={index}>{icon}</HeaderIconButton>
+                <Button className={'header__button button-simple'} key={index}>{icon}</Button>
             ))}
             <nav className='nav'>
                 <ul className="nav__list">

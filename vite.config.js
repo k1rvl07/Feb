@@ -5,8 +5,6 @@ import path from 'path';
 export default defineConfig({
   base: '',
   plugins: [react()],
-  logLevel: 'warn',
-  clearScreen: false,
   resolve: {
     alias: {
       '@components': path.resolve(__dirname, 'src/react/components'),
@@ -15,7 +13,7 @@ export default defineConfig({
       '@sections': path.resolve(__dirname, 'src/react/sections'),
       '@pages': path.resolve(__dirname, 'src/react/pages'),
       '@style_scss': path.resolve(__dirname, 'src/style_scss'),
-      '@data': path.resolve(__dirname, 'src/scripts/data.js'),
+      '@scripts': path.resolve(__dirname, 'src/scripts'),
     }
   },
   css: {

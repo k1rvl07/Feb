@@ -1,7 +1,6 @@
 @use "../configuration.scss" as *;
 
 .header {
-    background-color: color("dark-blue");
     @include spacing(padding, y, 20px);
     &__container {
         @include grid-setup(on, repeat(2, auto), repeat(3, auto), "logo search login" "nav nav nav");
@@ -17,7 +16,6 @@
         }
     }
     &__icon-button {
-        @extend %simple-button;
         @include size(default, 24px, 24px);
         &:nth-child(2) {
             grid-area: search;
@@ -97,8 +95,8 @@
             @include spacing(padding, y, px);
         }
     }
-    &__title {
-        @extend %main-content-title;
+    &__heading {
+        @extend %main-content-heading;
         line-height: 1;
     }
     &__text {
@@ -110,8 +108,6 @@
         }
     }
     &__button {
-        @extend %simple-button;
-        @extend %main-content-button;
         @include flex(on, $align-items: center, $gap: 8px);
         @include spacing(margin, top, 20px);
         @include respond-to(desktop) {
@@ -120,5 +116,55 @@
     }
     &__arrow {
         padding-top: 5px;
+    }
+}
+
+.collection {
+    @include spacing(margin, top, 60px);
+    &__heading {
+        @include spacing(margin, bottom, 30px);
+    }
+    .card {
+        @include border(all, 1px, solid, color("black"));
+        @include flex(on, column, $align-items: center);
+        &__image-container {
+            background-color: color("black");
+            @include size(default, 252px, 180px);
+            @include flex(on, $align-items: center, $justify: center);
+        }
+        &__content {
+            @include size(default, 223px, 290px);
+            @include spacing(padding, (top, bottom), 16px, 24px);
+            @include flex(on, column, $align-items: flex-start);
+        }
+        &__heading {
+            @extend %card-heading;
+        }
+        &__description {
+            @extend %card-description;
+            @include spacing(margin, top, 8px);
+        }
+        &__button {
+            @include spacing(padding, (x, y), 28.5px, 10.5px);
+            @include spacing(margin, top, auto);
+        }
+    }
+    .slider {
+        &__slides {
+            @include flex(on, $align-items: center, $gap: 16px);
+        }
+        &__indicators {
+            @include flex(on, $justify: center, $gap: 20px);
+            @include spacing(margin, top, 15px);
+        }
+        &__indicator {
+            @include size(default, 10px, 10px);
+            background-color: color("black");
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+            &.active {
+                background-color: color("green-toxic");
+            }
+        }
     }
 }
