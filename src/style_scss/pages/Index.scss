@@ -208,6 +208,9 @@
             @extend %artifacts-info-heading;
         }
     }
+    &__button {
+        @include size(default, fit-content);
+    }
     &__image {
         &:nth-child(2) {
             @include respond-to(desktop) {
