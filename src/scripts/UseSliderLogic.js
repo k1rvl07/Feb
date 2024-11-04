@@ -1,19 +1,34 @@
-import { useRef, useEffect, useState, Children } from "react";
+import { useRef, useEffect, useState, Children, useMemo } from "react";
 
-export const useSliderLogic = (children) => {
+export default function UseSliderLogic(children) {
     const slideCount = Children.count(children);
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
     const slideRefs = useRef([]);
     const touchStartX = useRef(null);
     const touchEndX = useRef(null);
+    const [isActive, setIsActive] = useState(window.innerWidth < 1110);
 
     useEffect(() => {
-        const options = {
-            root: sliderRef.current,
-            rootMargin: "0px",
-            threshold: 0.5,
+        const handleResize = () => {
+            setIsActive(window.innerWidth < 1110);
         };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const observerOptions = useMemo(() => ({
+        root: sliderRef.current,
+        rootMargin: "0px",
+        threshold: 0.5,
+    }), [sliderRef.current]);
+
+    useEffect(() => {
+        if (!isActive) return;
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -22,7 +37,7 @@ export const useSliderLogic = (children) => {
                     setCurrentIndex(index);
                 }
             });
-        }, options);
+        }, observerOptions);
 
         slideRefs.current.forEach(slide => {
             if (slide) {
@@ -33,27 +48,29 @@ export const useSliderLogic = (children) => {
         return () => {
             observer.disconnect();
         };
-    }, []);
+    }, [isActive, observerOptions]);
 
     const handleSwipeStart = (e) => {
+        if (!isActive) return;
         touchStartX.current = e.touches[0].clientX;
     };
 
     const handleSwipeMove = (e) => {
+        if (!isActive) return;
         touchEndX.current = e.touches[0].clientX;
     };
 
     const handleSwipeEnd = () => {
-        if (touchStartX.current && touchEndX.current) {
-            const distance = touchStartX.current - touchEndX.current;
-            const isLeftSwipe = distance > 50;
-            const isRightSwipe = distance < -50;
+        if (!isActive || !touchStartX.current || !touchEndX.current) return;
 
-            if (isLeftSwipe) {
-                handleSwipe('right');
-            } else if (isRightSwipe) {
-                handleSwipe('left');
-            }
+        const distance = touchStartX.current - touchEndX.current;
+        const isLeftSwipe = distance > 50;
+        const isRightSwipe = distance < -50;
+
+        if (isLeftSwipe) {
+            handleSwipe('right');
+        } else if (isRightSwipe) {
+            handleSwipe('left');
         }
 
         touchStartX.current = null;

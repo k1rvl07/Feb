@@ -1,7 +1,7 @@
 // Компоненты
 import Container from '@components/Container';
 
-export default function SectionTemplate({ tagName, className, children }) {
+export default function Section({ tagName, className, children }) {
     const Tag = tagName;
 
     return (

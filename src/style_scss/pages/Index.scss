@@ -15,7 +15,7 @@
             @include spacing(margin, right, 125px);
         }
     }
-    &__icon-button {
+    &__button {
         @include size(default, 24px, 24px);
         &:nth-child(2) {
             grid-area: search;
@@ -108,14 +108,10 @@
         }
     }
     &__button {
-        @include flex(on, $align-items: center, $gap: 8px);
         @include spacing(margin, top, 20px);
         @include respond-to(desktop) {
             @include spacing(margin, top, 0px);
         }
-    }
-    &__arrow {
-        padding-top: 5px;
     }
 }
 
@@ -168,6 +164,69 @@
             &.active {
                 background-color: color("green-toxic");
             }
+        }
+    }
+}
+
+.artifacts {
+    @include spacing(margin, top, 60px);
+    &__container {
+        @include respond-to(desktop) {
+            @include grid-setup(on, repeat(2, auto), repeat(2, auto), "heading heading" "collage info");
+        }
+    }
+
+    &__heading {
+        grid-area: heading;
+        @include spacing(margin, bottom, 30px);
+    }
+    &__collage {
+        grid-area: collage;
+        @include size(default, 795px, 485px);
+        @include respond-to(desktop) {
+            @include size(default, 794px, 461px);
+        }
+    }
+    &__description {
+        @extend %artifacts-description;
+        @include spacing(margin, (top, bottom), 8px, auto);
+    }
+    &__info {
+        grid-area: info;
+        @include size(default, 255px, 493px);
+        @include spacing(margin, top, 30px);
+        background-color: color("green-toxic");
+        @include respond-to(desktop) {
+            @include spacing(margin, top, 0px);
+        }
+        &-container {
+            @include spacing(padding, (x, y), 16px, 24px);
+            @include size(default, 100%, 100%);
+            @include flex(on, column);
+        }
+        &-heading {
+            @extend %artifacts-info-heading;
+        }
+    }
+    &__image {
+        &:nth-child(2) {
+            @include respond-to(desktop) {
+                display: none;
+            }
+        }
+    }
+    .slider {
+        background-color: color("black");
+        @include size(default, fit-content, fit-content);
+        &__window {
+            @include size(default, 255px, 517px);
+            @include respond-to(desktop) {
+                @include size(default, 825px, 493px);
+            }
+        }
+        &__slide {
+            @include spacing(padding, all, 16px, 16px);
+            @include size(default, fit-content, fit-content);
         }
     }
 }

@@ -25,6 +25,10 @@ body {
         @include button(simple);
         &-arrow {
             @include button("simple", "arrow");
+            @include flex(on, $align-items: center, $gap: 8px);
+            .arrow {
+                @include spacing(padding, top, 5px);
+            }
         }
     }
     &-transparent {
@@ -33,8 +37,16 @@ body {
             @include button("transparent", "text");
         }
     }
+    &-black-arrow {
+        @include button("black", "arrow");
+        @include flex(on, $align-items: center, $gap: 8px);
+        .arrow {
+            @include spacing(padding, top, 5px);
+        }
+    }
 }
 
 .heading-second {
     @extend %heading-second;
+    line-height: 1;
 }

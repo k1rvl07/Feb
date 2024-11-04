@@ -1,33 +1,34 @@
-import React from "react";
+import { Children, memo, useRef } from "react";
 
 // Компоненты
 import SliderIndicators from "@components/SliderIndicators";
 
-// Скрипты
-import { useSliderLogic } from "@scripts/SliderLogic";
+// Логика слайдера
+import UseSliderLogic from "@scripts/UseSliderLogic";
 
+function Slider({ children, enableIndicators = true, enableSliderLogic = true }) {
+    const sliderLogic = enableSliderLogic ? UseSliderLogic(children) : {};
 
-export default function Slider({ children }) {
     const {
-        currentIndex,
-        sliderRef,
-        slideRefs,
-        handleSwipeStart,
-        handleSwipeMove,
-        handleSwipeEnd,
-    } = useSliderLogic(children);
+        currentIndex = 0,
+        sliderRef = useRef(null),
+        slideRefs = useRef([]),
+        handleSwipeStart = () => { },
+        handleSwipeMove = () => { },
+        handleSwipeEnd = () => { },
+    } = sliderLogic;
 
     return (
         <div
             className="slider"
             ref={sliderRef}
-            onTouchStart={handleSwipeStart}
-            onTouchMove={handleSwipeMove}
-            onTouchEnd={handleSwipeEnd}
+            onTouchStart={enableSliderLogic ? handleSwipeStart : null}
+            onTouchMove={enableSliderLogic ? handleSwipeMove : null}
+            onTouchEnd={enableSliderLogic ? handleSwipeEnd : null}
         >
-            <div className="slider__window">
+            <div style={{ scrollSnapType: enableSliderLogic ? "x mandatory" : "none", }} className="slider__window">
                 <div className="slider__slides">
-                    {React.Children.map(children, (child, index) => (
+                    {Children.map(children, (child, index) => (
                         <div
                             key={index}
                             className="slider__slide"
@@ -38,7 +39,11 @@ export default function Slider({ children }) {
                     ))}
                 </div>
             </div>
-            <SliderIndicators slideCount={React.Children.count(children)} currentIndex={currentIndex} />
+            {enableIndicators && (
+                <SliderIndicators slideCount={Children.count(children)} currentIndex={currentIndex} />
+            )}
         </div>
     );
 };
+
+export default memo(Slider);

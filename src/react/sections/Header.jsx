@@ -1,7 +1,7 @@
 // Компоненты
 import NavItem from '@components/NavItem';
 import Button from '@components/Button';
-import SectionTemplate from '@components/SectionTemplate';
+import Section from '@components/Section';
 
 // Дата
 import { navItems } from '@scripts/data';
@@ -23,7 +23,7 @@ export default function Header() {
         </svg>
     ];
     return (
-        <SectionTemplate tagName='header' className='header'>
+        <Section tagName='header' className='header'>
             <img className="header__logo" src={logo} alt="" />
             {buttonIcons.map((icon, index) => (
                 <Button className={'header__button button-simple'} key={index}>{icon}</Button>
@@ -35,6 +35,6 @@ export default function Header() {
                     ))}
                 </ul>
             </nav>
-        </SectionTemplate>
+        </Section>
     );
 }

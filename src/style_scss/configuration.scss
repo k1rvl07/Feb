@@ -42,6 +42,8 @@ $text-list: (
     card-heading "Cormorant" bold normal white 24px 24px,
     card-description "Open Sans" regular normal color("grey") 16px 16px,
     heading-second "Cormorant" bold italic white 48px 48px,
+    artifacts-info-heading "Cormorant" bold normal color("dark-blue") 24px 24px,
+    artifacts-description "Open Sans" regular normal color("green-active") 16px 16px
 );
 
 $link-list: (nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,);
@@ -342,6 +344,14 @@ $breakpoints: (
             border-color: color("green-active");
             background-color: color("green-active");
         }
+    } @else if $type == "black" {
+        color: color("black");
+        &:hover {
+            color: color("green-active");
+        }
+        &:active {
+            color: color("black");
+        }
     }
 }
 
@@ -445,4 +455,3 @@ $breakpoints: (
     scroll-snap-align: start;
     position: relative;
 }
-
