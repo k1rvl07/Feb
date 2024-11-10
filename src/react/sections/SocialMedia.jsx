@@ -1,3 +1,4 @@
+// Компоненты
 import Section from "@components/Section";
 import SocialMediaIcon from "@components/SocialMediaIcon";
 

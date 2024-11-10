@@ -5,6 +5,7 @@ import Collection from "@sections/Collection";
 import Artifacts from "@sections/Artifacts";
 import Help from "@sections/Help";
 import SocialMedia from "@sections/SocialMedia";
+import Footer from "@sections/Footer";
 
 export default function Index() {
     return (
@@ -17,6 +18,7 @@ export default function Index() {
                 <Help />
                 <SocialMedia />
             </main>
+            <Footer />
         </>
     );
 }

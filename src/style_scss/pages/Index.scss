@@ -269,3 +269,13 @@
         @include flex(on, $align-items: center, $justify: center);
     }
 }
+
+.footer {
+    &__container {
+        @include flex(on, column, $align-items: center);
+        @include spacing(padding, y, 3px);
+    }
+    &__text {
+        @extend %footer-text;
+    }
+}
