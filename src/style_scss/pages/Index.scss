@@ -101,7 +101,7 @@
     }
     &__text {
         display: none;
-        @extend %main-content-text;
+        @extend %main-content-help-text;
         @include respond-to(desktop) {
             display: block;
             @include spacing(margin, (top, bottom), 16px, 24px);
@@ -230,6 +230,30 @@
         &__slide {
             @include spacing(padding, all, 16px, 16px);
             @include size(default, fit-content, fit-content);
+        }
+    }
+}
+
+.help {
+    @include spacing(margin, top, 60px);
+    @include background-image("@img/help_bg.png", no-repeat, cover, center);
+    @include respond-to(desktop) {
+        @include background-image("@img/help_bg_desktop.png");
+    }
+    &__container {
+        @include spacing(padding, y, 60px);
+    }
+    &__description {
+        @extend %main-content-help-text;
+        @include spacing(margin, (top, bottom), 16px, 24px);
+        @include respond-to(desktop) {
+            @include size(default, 825px, null);
+        }
+    }
+    .form {
+        @include flex(on, column, $align-items: flex-start, $gap: 16px);
+        &__submit {
+            @include spacing(padding, (x, y), 26px, 11.5px);
         }
     }
 }

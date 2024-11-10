@@ -24,7 +24,7 @@ body {
     &-simple {
         @include button(simple);
         &-arrow {
-            @include button("simple", "arrow");
+            @include button("simple-arrow");
             @include flex(on, $align-items: center, $gap: 8px);
             .arrow {
                 @include spacing(padding, top, 5px);
@@ -34,11 +34,14 @@ body {
     &-transparent {
         @include button("transparent");
         &-text {
-            @include button("transparent", "text");
+            @include button("transparent");
         }
     }
+    &-green {
+        @include button("green");
+    }
     &-black-arrow {
-        @include button("black", "arrow");
+        @include button("black-arrow");
         @include flex(on, $align-items: center, $gap: 8px);
         .arrow {
             @include spacing(padding, top, 5px);
@@ -49,4 +52,8 @@ body {
 .heading-second {
     @extend %heading-second;
     line-height: 1;
+}
+
+.input {
+    @extend %input;
 }

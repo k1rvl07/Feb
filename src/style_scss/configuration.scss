@@ -12,7 +12,8 @@ $colors-map: (
     "green": #506829,
     "green-toxic": #bae249,
     "green-hover": #91ac46,
-    "green-active": #688b05
+    "green-active": #688b05,
+    "red": #e24949
 );
 
 @function color($color-name) {
@@ -38,7 +39,7 @@ $font-weights-map: (
 
 $text-list: (
     main-content-heading "Cormorant" bold normal white 48px 60px,
-    main-content-text "Open Sans" regular normal white 16px 16px,
+    main-content-help-text "Open Sans" regular normal white 16px 16px,
     card-heading "Cormorant" bold normal white 24px 24px,
     card-description "Open Sans" regular normal color("grey") 16px 16px,
     heading-second "Cormorant" bold italic white 48px 48px,
@@ -46,7 +47,18 @@ $text-list: (
     artifacts-description "Open Sans" regular normal color("green-active") 16px 16px
 );
 
-$link-list: (nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,);
+$dynamic-text-list: (
+    nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,
+    button-simple "Open Sans" regular normal color("green-toxic") color("green-hover") color("green-active") 16px 16px,
+    button-simple-arrow "Open Sans" bold normal color("green-toxic") color("green-hover") color("green-active") 16px
+        16px,
+    button-transparent "Open Sans" regular normal color("green-toxic") color("black") color("black") 16px 16px,
+    button-black "Open Sans" regular normal color("black") color("green-active") color("black") 16px 16px,
+    button-black-arrow "Open Sans" bold normal color("black") color("green-active") color("black") 16px 16px,
+    button-green "Open Sans" bold normal color("black") color("black") color("black") 16px 16px,
+    input-placeholder "Open Sans" regular normal grey white white 16px 16px,
+    input-text "Open Sans" bold normal color("black") color("black") color("black") 16px 16px
+);
 
 // Миксины
 
@@ -290,7 +302,7 @@ $breakpoints: (
     }
 }
 
-@mixin image-fit($fit: cover, $position: center) {
+@mixin image-fit($fit: null, $position: null) {
     object-fit: $fit;
     object-position: $position;
 }
@@ -302,55 +314,35 @@ $breakpoints: (
     background-position: $position;
 }
 
-@mixin button-text($type) {
-    font-style: normal;
-    font-size: 16px;
-    font-family: "Open Sans";
-    @if $type == "text" {
-        font-weight: font-weight(regular);
-    } @else if $type == "arrow" {
-        font-weight: font-weight(bold);
-    }
-}
-
 @mixin button($type: null, $font: null) {
     @extend %simple-transition;
-    @if $font == "text" {
-        @include button-text("text");
-    } @else if $font == "arrow" {
-        @include button-text("arrow");
-    }
     @if $type == "simple" {
-        color: color("green-toxic");
-
-        &:hover {
-            color: color("green-hover");
-        }
-
-        &:active {
-            color: color("green-active");
-        }
+        @extend %button-simple;
+    } @else if $type == "simple-arrow" {
+        @extend %button-simple-arrow;
     } @else if $type == "transparent" {
-        color: color("green-toxic");
+        @extend %button-transparent;
         background-color: transparent;
         @include border(all, 1px, solid, color("green-toxic"));
-
         &:hover {
-            color: color("black");
             background-color: color("green-toxic");
         }
-
         &:active {
             border-color: color("green-active");
             background-color: color("green-active");
         }
     } @else if $type == "black" {
-        color: color("black");
+        @extend %button-black;
+    } @else if $type == "black-arrow" {
+        @extend %button-black-arrow;
+    } @else if $type == "green" {
+        @extend %button-green;
+        background-color: color("green-toxic");
         &:hover {
-            color: color("green-active");
+            background-color: color("green-hover");
         }
         &:active {
-            color: color("black");
+            background-color: color("green-active");
         }
     }
 }
@@ -380,7 +372,7 @@ $breakpoints: (
     }
 }
 
-@each $item in $link-list {
+@each $item in $dynamic-text-list {
     $name: list.nth($item, 1);
     $font-family: list.nth($item, 2);
     $font-weight: list.nth($item, 3);
@@ -454,4 +446,24 @@ $breakpoints: (
 %slide {
     scroll-snap-align: start;
     position: relative;
+}
+
+%input {
+    @extend %simple-transition;
+    @extend %input-text;
+    @include spacing(padding, (x, y), 16px, 10.5px);
+    @include size(default, 100%, null);
+    background-color: white;
+    @include respond-to(desktop) {
+        @include size(default, 350px, 45px);
+    }
+    &:hover {
+        background-color: color("grey");
+    }
+    &::placeholder {
+        @extend %input-placeholder;
+    }
+    &:invalid {
+        @include border(all, 1px, solid, color("red"));
+    }
 }

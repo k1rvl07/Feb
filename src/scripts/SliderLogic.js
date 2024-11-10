@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, Children, useMemo } from "react";
 
-export default function UseSliderLogic(children) {
+export default function SliderLogic(children) {
     const slideCount = Children.count(children);
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);

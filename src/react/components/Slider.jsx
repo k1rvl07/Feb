@@ -1,13 +1,13 @@
-import { Children, memo, useRef } from "react";
+import { Children, useRef } from "react";
 
 // Компоненты
 import SliderIndicators from "@components/SliderIndicators";
 
 // Логика слайдера
-import UseSliderLogic from "@scripts/UseSliderLogic";
+import SliderLogic from "@scripts/SliderLogic";
 
-function Slider({ children, enableIndicators = true, enableSliderLogic = true }) {
-    const sliderLogic = enableSliderLogic ? UseSliderLogic(children) : {};
+export default function Slider({ children, enableIndicators = true, enableSliderLogic = true }) {
+    const sliderLogic = enableSliderLogic ? SliderLogic(children) : {};
 
     const {
         currentIndex = 0,
@@ -45,5 +45,3 @@ function Slider({ children, enableIndicators = true, enableSliderLogic = true })
         </div>
     );
 };
-
-export default memo(Slider);
