@@ -1,8 +1,10 @@
+// Компоненты
 import Form from "@components/Form";
 import Input from "@components/Input";
 import Section from "@components/Section";
 import SecondHeading from "@components/HeadingSecond";
 
+// Логика формы
 import FormLogic from '@scripts/FormLogic';
 
 export default function Help() {

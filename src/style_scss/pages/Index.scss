@@ -257,3 +257,15 @@
         }
     }
 }
+
+.social-media {
+    background-color: color("black");
+    &__container {
+        @include size(default, 186px, 24px);
+        @include spacing((margin, padding), (x, y), auto, null, null, 18px);
+        @include flex(on, $align-items: center, $justify: space-between);
+    }
+    &__button {
+        @include flex(on, $align-items: center, $justify: center);
+    }
+}

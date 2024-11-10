@@ -56,7 +56,8 @@ $dynamic-text-list: (
     button-black "Open Sans" regular normal color("black") color("green-active") color("black") 16px 16px,
     button-black-arrow "Open Sans" bold normal color("black") color("green-active") color("black") 16px 16px,
     button-green "Open Sans" bold normal color("black") color("black") color("black") 16px 16px,
-    input-placeholder "Open Sans" regular normal grey white white 16px 16px,
+    button-icon "Open Sans" regular normal color("grey") color("green-toxic") color("green-active") 16px 16px,
+    input-placeholder "Open Sans" regular normal color("grey") white white 16px 16px,
     input-text "Open Sans" bold normal color("black") color("black") color("black") 16px 16px
 );
 
@@ -314,7 +315,7 @@ $breakpoints: (
     background-position: $position;
 }
 
-@mixin button($type: null, $font: null) {
+@mixin button($type: null) {
     @extend %simple-transition;
     @if $type == "simple" {
         @extend %button-simple;
@@ -344,6 +345,8 @@ $breakpoints: (
         &:active {
             background-color: color("green-active");
         }
+    } @else if $type == "icon" {
+        @extend %button-icon;
     }
 }
 
