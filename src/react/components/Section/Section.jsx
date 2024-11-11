@@ -1,7 +1,7 @@
 // Компоненты
-import Container from '@components/Container';
+import { Container } from '@components';
 
-export default function Section({ tagName, className, children }) {
+export const Section = ({ tagName, className, children }) => {
     const Tag = tagName;
 
     return (

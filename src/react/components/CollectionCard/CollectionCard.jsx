@@ -1,7 +1,7 @@
 // Компоненты
-import Button from "@components/Button";
+import { Button } from "@components";
 
-export default function CollectionCard({ img, heading, description }) {
+export const CollectionCard = ({ img, heading, description }) => {
     return (
         <div className="card">
             <div className="card__image-container"><img className="card__image" src={img} alt="" /></div>

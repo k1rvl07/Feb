@@ -1,5 +1,5 @@
 // Компоненты
-import Section from "@components/Section";
+import { Section } from "@components";
 
 export default function Footer() {
     return (

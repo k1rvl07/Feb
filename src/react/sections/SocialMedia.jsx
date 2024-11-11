@@ -1,6 +1,5 @@
 // Компоненты
-import Section from "@components/Section";
-import SocialMediaIcon from "@components/SocialMediaIcon";
+import { Section, SocialMediaIcon } from "@components";
 
 export default function SocialMedia() {
     const socialMediaItems = [

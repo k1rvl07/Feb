@@ -1,12 +1,12 @@
 import { Children, useRef } from "react";
 
 // Компоненты
-import SliderIndicators from "@components/SliderIndicators";
+import { SliderIndicators } from "@components";
 
 // Логика слайдера
 import SliderLogic from "@scripts/SliderLogic";
 
-export default function Slider({ children, enableIndicators = true, enableSliderLogic = true }) {
+export const Slider = ({ children, enableIndicators = true, enableSliderLogic = true }) => {
     const sliderLogic = enableSliderLogic ? SliderLogic(children) : {};
 
     const {

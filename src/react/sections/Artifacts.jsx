@@ -1,8 +1,5 @@
 // Компоненты
-import Section from "@components/Section";
-import SecondHeading from "@components/HeadingSecond";
-import Slider from "@components/Slider";
-import Button from "@components/Button";
+import { Section, HeadingSecond, Slider, Button } from "@components";
 
 // Картинки
 import collage from "@img/collage.png";
@@ -11,7 +8,7 @@ import swipe from "@img/swipe_to_see_more.png";
 export default function Artifacts() {
     return (
         <Section tagName="section" className="artifacts">
-            <SecondHeading className="artifacts__heading">Новые артефакты</SecondHeading>
+            <HeadingSecond className="artifacts__heading">Новые артефакты</HeadingSecond>
             <Slider enableSliderLogic={false} enableIndicators={false}>
                 <div className="artifacts__collage">
                     <img className="artifacts__image" src={collage} alt="" />

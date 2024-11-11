@@ -1,4 +1,4 @@
-export default function SocialMediaIcon({ className, children }) {
+export const SocialMediaIcon = ({ className, children }) => {
     return (
         <button className={className}>{children}</button>
     );

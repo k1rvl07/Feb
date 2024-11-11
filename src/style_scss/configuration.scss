@@ -49,7 +49,7 @@ $text-list: (
 );
 
 $dynamic-text-list: (
-    nav-link "Open Sans" regular normal white color("green-toxic") color(green-active) 16px 16px,
+    nav-link "Open Sans" regular normal white color("green-toxic") color("green-active") 16px 16px,
     button-simple "Open Sans" regular normal color("green-toxic") color("green-hover") color("green-active") 16px 16px,
     button-simple-arrow "Open Sans" bold normal color("green-toxic") color("green-hover") color("green-active") 16px
         16px,

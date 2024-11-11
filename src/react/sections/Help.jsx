@@ -1,8 +1,5 @@
 // Компоненты
-import Form from "@components/Form";
-import Input from "@components/Input";
-import Section from "@components/Section";
-import SecondHeading from "@components/HeadingSecond";
+import { Form, Input, Section, HeadingSecond } from "@components";
 
 // Логика формы
 import FormLogic from '@scripts/FormLogic';
@@ -17,7 +14,7 @@ export default function Help() {
 
     return (
         <Section className="help" tagName="section">
-            <SecondHeading className="help__heading">Нужна помощь?</SecondHeading>
+            <HeadingSecond className="help__heading">Нужна помощь?</HeadingSecond>
             <p className="help__description">
                 Равным образом, экономическая повестка сегодняшнего дня не даёт нам иного выбора, кроме определения прогресса профессионального сообщества. Как принято считать, элементы политического процесса рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.
             </p>

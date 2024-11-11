@@ -1,7 +1,5 @@
 // Компоненты
-import NavItem from '@components/NavItem';
-import Button from '@components/Button';
-import Section from '@components/Section';
+import { NavItem, Button, Section } from '@components';
 
 // Дата
 import { navItems } from '@scripts/data';

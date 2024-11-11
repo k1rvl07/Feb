@@ -1,4 +1,4 @@
-export default function SliderIndicators({ slideCount, currentIndex }) {
+export const SliderIndicators = ({ slideCount, currentIndex }) => {
     const indicators = Array.from({ length: slideCount }, (_, index) => (
         <div
             key={index}
